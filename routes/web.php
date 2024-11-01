@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,7 @@ Route::get('/privacypolicy', function (){
     return view('privacypolicy');
 });
 
+Route::controller(FormController::class)->group(function () {
+    Route::get("/application", 'showForm')->name('form.show');
+    Route::post("/application", 'submitForm')->name("form.submit");
+});

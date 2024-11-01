@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home/styles.css">
     
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <!-- bootstrap script-->
     <script
       defer
@@ -31,6 +33,8 @@
 
     {{-- custom script --}}
     <script src="/js/home/index.js" defer></script>
+    @yield('head')
+
 
 </head>
 
@@ -40,7 +44,7 @@
 @endphp
 @endempty
 
-<body style="background-image: linear-gradient(to bottom right, #FDFCFB, #E2D1C3);">
+<body>
   <div class="container">
       {{-- NavBar --}}
       <nav class="navbar navbar-expand-lg">
@@ -60,7 +64,7 @@
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
                         <li class="nav-item me-2">
                         <a class="nav-link @if ($route == '/')
                             active
@@ -88,7 +92,16 @@
                                 active
                             @endif" aria-current="page" href="/contact"
                             >
-                                <i class="fa-solid fa-address-book"></i> Contact us
+                                <i class="fa-solid fa-address-book"></i> Contact Us
+                            </a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link 
+                            @if ($route == '/application')
+                                active
+                            @endif" aria-current="page" href="/application"
+                            >
+                                <i class="fa-solid fa-file"></i> File&Drafting
                             </a>
                         </li>
                     </ul>
@@ -100,13 +113,13 @@
       @yield('content')
       
       {{-- Footer --}}
-      <footer class="  p-4" style="background-color:hsl(60, 50%, 90%);">
-            <div class="p-3 row align-items-baseline rounded " style="background-color:hsl(60, 50%, 70%);">
-                <div class="col-12 col-md mt-2 ms-md-4 " >
+      <footer class="p-4 " style="background-color:hsl(60, 50%, 90%);">
+            <div class="p-3 rounded row align-items-baseline " style="background-color:hsl(60, 50%, 70%);">
+                <div class="mt-2 col-12 col-md ms-md-4 " >
                     <p><i class="fa-solid fa-envelope fa-beat"></i> info@legalsuccessindia.com</p>
                     <p><i class="fa-solid fa-phone fa-beat"></i> (+91) 6290634766</p>
                 </div>
-                <div class="col-12 col-md mt-2 ms-md-4 ">
+                <div class="mt-2 col-12 col-md ms-md-4 ">
                     <h3>Services</h3>
                     <div>
                     <ul>
@@ -125,7 +138,7 @@
                     </ul>
                     </div>
                 </div>
-                <div class="col-12 col-md mt-2 ms-md-4 ">
+                <div class="mt-2 col-12 col-md ms-md-4 ">
                     <h3>Menu</h3>
                     <div>
                     <ul>
@@ -146,6 +159,7 @@
                 </div>
             </div>
       </footer>
+      @yield('script')
   </div>
 </body>
 </html>
